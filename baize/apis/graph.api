@@ -1,0 +1,28 @@
+syntax = "v1"
+
+info(
+	title: "graph"
+	desc: "graph apis"
+	author: "panjiangming"
+	email: "panjm2001@126.com"
+	version: "v1"
+)
+
+type (
+	GenerageGraphReq {
+		Dir string `form:"dir"`
+	}
+
+	GenerateGraphResp {
+		PackageCount uint `json:"packageCount"`
+	}
+)
+
+@server(
+	group: graph
+)
+service baize-api {
+	@doc "根据dir name生成依赖有向图"
+	@handler GenerateGraph
+	get /baize/v1/gengerate-graph (GenerageGraphReq) returns (GenerateGraphResp)
+}
