@@ -2,7 +2,6 @@ package graph
 
 import (
 	"context"
-
 	"github.com/pjimming/baize/core/internal/svc"
 	"github.com/pjimming/baize/core/internal/types"
 
