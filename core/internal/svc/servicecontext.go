@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"github.com/pjimming/baize/baize/internal/config"
+	"github.com/pjimming/baize/core/internal/config"
 )
 
 type ServiceContext struct {

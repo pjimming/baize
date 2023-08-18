@@ -4,8 +4,8 @@ package handler
 import (
 	"net/http"
 
-	graph "github.com/pjimming/baize/baize/internal/handler/graph"
-	"github.com/pjimming/baize/baize/internal/svc"
+	graph "github.com/pjimming/baize/core/internal/handler/graph"
+	"github.com/pjimming/baize/core/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

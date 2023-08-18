@@ -1,7 +1,7 @@
 syntax = "v1"
 
 info(
-	title: "baize"
+	title: "core"
 	desc: "Golang Package Dependency Visualization"
 	author: "panjiangming"
 	email: "panjm2001@126.com"

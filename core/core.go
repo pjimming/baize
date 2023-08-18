@@ -4,15 +4,15 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/pjimming/baize/baize/internal/config"
-	"github.com/pjimming/baize/baize/internal/handler"
-	"github.com/pjimming/baize/baize/internal/svc"
+	"github.com/pjimming/baize/core/internal/config"
+	"github.com/pjimming/baize/core/internal/handler"
+	"github.com/pjimming/baize/core/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )
 
-var configFile = flag.String("f", "etc/baize-api.yaml", "the config file")
+var configFile = flag.String("c", "etc/core-api.yaml", "the config file")
 
 func main() {
 	flag.Parse()

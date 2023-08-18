@@ -21,7 +21,7 @@ type (
 @server(
 	group: graph
 )
-service baize-api {
+service core-api {
 	@doc "根据dir name生成依赖有向图"
 	@handler GenerateGraph
 	get /baize/v1/gengerate-graph (GenerageGraphReq) returns (GenerateGraphResp)

@@ -3,9 +3,9 @@ package graph
 import (
 	"net/http"
 
-	"github.com/pjimming/baize/baize/internal/logic/graph"
-	"github.com/pjimming/baize/baize/internal/svc"
-	"github.com/pjimming/baize/baize/internal/types"
+	"github.com/pjimming/baize/core/internal/logic/graph"
+	"github.com/pjimming/baize/core/internal/svc"
+	"github.com/pjimming/baize/core/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
