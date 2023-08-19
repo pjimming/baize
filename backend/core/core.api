@@ -1,0 +1,13 @@
+syntax = "v1"
+
+info(
+	title: "core"
+	desc: "Golang Package Dependency Visualization"
+	author: "panjiangming"
+	email: "panjm2001@126.com"
+	version: "v1"
+)
+
+import (
+	"apis/local.api"
+)

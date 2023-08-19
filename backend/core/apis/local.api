@@ -1,0 +1,51 @@
+syntax = "v1"
+
+info(
+	title: "local"
+	desc: "get local project dependence info"
+	author: "panjiangming"
+	email: "panjm2001@126.com"
+	version: "v1"
+)
+
+type (
+	CommonDirReq {
+		Dir string `form:"dir"`
+	}
+
+	GetModulePathResp {
+		ModulePath string `json:"modulePath"`
+	}
+
+	GetProjectInfoReq {
+		Dir        string `form:"dir"`
+		ModulePath string `form:"modulePath"`
+	}
+
+	GetProjectInfoResp {
+		ModuleName   string   `json:"moduleName"`
+		PackageList  []string `json:"packageList"`
+		PackageCount uint     `json:"packageCount"`
+	}
+
+	GenerateGraphResp {
+		PackageCount uint `json:"packageCount"`
+	}
+)
+
+@server(
+	group: local
+)
+service core-api {
+	@doc "获取go.mod路径"
+	@handler GetModulePath
+	get /baize/v1/local/module (CommonDirReq) returns (GetModulePathResp)
+	
+	@doc "获取项目信息：module、package"
+	@handler GetProjectInfo
+	get /baize/v1/local/info (GetProjectInfoReq) returns (GetProjectInfoResp)
+	
+	@doc "根据local dir name生成依赖有向图"
+	@handler GenerateGraph
+	get /baize/v1/local/graph (CommonDirReq) returns (GenerateGraphResp)
+}
