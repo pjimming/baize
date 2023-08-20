@@ -1,7 +1,7 @@
 <template>
 <div class="input-group input-group-lg">
-    <span class="input-group-text" id="inputGroup-sizing-default">请输入项目所在路径</span>
-    <input type="text" class="form-control" v-model="inputValue">
+    <span class="input-group-text" id="inputGroup-sizing-default">请输入项目的绝对路径</span>
+    <input type="text" class="form-control" v-model="inputValue" disabled>
     <button class="btn btn-primary" @click="getProjectInfo">Submit</button>
 </div>
 </template>
@@ -14,11 +14,10 @@ export default {
     data() {
         return {
             selectType: "text",
-            inputValue: "",
+            inputValue: "D:\\GoProject\\baize\\backend",
         };
     },
     methods: {
-
         async getProjectInfo() {
             const queryParams = {
                 dir: this.inputValue,
@@ -31,9 +30,6 @@ export default {
             try {
                 const response = await fetch(`${apiURL}?${queryString}`, {
                     method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    }
                 });
 
                 if (response.ok) {
