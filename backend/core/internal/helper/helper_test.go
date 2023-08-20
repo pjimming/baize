@@ -2,8 +2,9 @@ package helper
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 var dir = `D:\GoProject\baize\backend`

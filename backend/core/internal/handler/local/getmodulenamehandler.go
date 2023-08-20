@@ -1,24 +1,24 @@
 package local
 
 import (
+	"net/http"
+
 	"github.com/pjimming/baize/core/internal/logic/local"
 	"github.com/pjimming/baize/core/internal/svc"
 	"github.com/pjimming/baize/core/internal/types"
-	"net/http"
-
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func GetProjectInfoHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func GetModuleNameHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.GetProjectInfoReq
+		var req types.CommonModulePathReq
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 			return
 		}
 
-		l := local.NewGetProjectInfoLogic(r.Context(), svcCtx)
-		resp, err := l.GetProjectInfo(&req)
+		l := local.NewGetModuleNameLogic(r.Context(), svcCtx)
+		resp, err := l.GetModuleName(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

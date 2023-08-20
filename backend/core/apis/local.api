@@ -13,23 +13,21 @@ type (
 		Dir string `form:"dir"`
 	}
 
+	CommonModulePathReq {
+		ModulePath string `form:"modulePath"`
+	}
+
 	GetModulePathResp {
 		ModulePath string `json:"modulePath"`
 	}
 
-	GetProjectInfoReq {
-		Dir        string `form:"dir"`
-		ModulePath string `form:"modulePath"`
-	}
-
-	GetProjectInfoResp {
-		ModuleName   string   `json:"moduleName"`
+	GetPackagesResp {
 		PackageList  []string `json:"packageList"`
 		PackageCount uint     `json:"packageCount"`
 	}
 
-	GenerateGraphResp {
-		PackageCount uint `json:"packageCount"`
+	GetModuleNameResp {
+		ModuleName string `json:"moduleName"`
 	}
 )
 
@@ -39,13 +37,13 @@ type (
 service core-api {
 	@doc "获取go.mod路径"
 	@handler GetModulePath
-	get /baize/v1/local/module (CommonDirReq) returns (GetModulePathResp)
+	get /baize/v1/local/module/path (CommonDirReq) returns (GetModulePathResp)
 	
-	@doc "获取项目信息：module、package"
-	@handler GetProjectInfo
-	get /baize/v1/local/info (GetProjectInfoReq) returns (GetProjectInfoResp)
+	@doc "获取包列表"
+	@handler GetPackages
+	get /baize/v1/local/packages (CommonDirReq) returns (GetPackagesResp)
 	
-	@doc "根据local dir name生成依赖有向图"
-	@handler GenerateGraph
-	get /baize/v1/local/graph (CommonDirReq) returns (GenerateGraphResp)
+	@doc "获取模块名称"
+	@handler GetModuleName
+	get /baize/v1/local/module/name (CommonModulePathReq) returns (GetModuleNameResp)
 }

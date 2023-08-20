@@ -2,9 +2,10 @@
 package handler
 
 import (
-	local2 "github.com/pjimming/baize/core/internal/handler/local"
-	"github.com/pjimming/baize/core/internal/svc"
 	"net/http"
+
+	local "github.com/pjimming/baize/core/internal/handler/local"
+	"github.com/pjimming/baize/core/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -14,18 +15,18 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/baize/v1/local/module",
-				Handler: local2.GetModulePathHandler(serverCtx),
+				Path:    "/baize/v1/local/module/path",
+				Handler: local.GetModulePathHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/baize/v1/local/info",
-				Handler: local2.GetProjectInfoHandler(serverCtx),
+				Path:    "/baize/v1/local/packages",
+				Handler: local.GetPackagesHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/baize/v1/local/graph",
-				Handler: local2.GenerateGraphHandler(serverCtx),
+				Path:    "/baize/v1/local/module/name",
+				Handler: local.GetModuleNameHandler(serverCtx),
 			},
 		},
 	)

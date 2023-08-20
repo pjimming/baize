@@ -5,21 +5,19 @@ type CommonDirReq struct {
 	Dir string `form:"dir"`
 }
 
+type CommonModulePathReq struct {
+	ModulePath string `form:"modulePath"`
+}
+
 type GetModulePathResp struct {
 	ModulePath string `json:"modulePath"`
 }
 
-type GetProjectInfoReq struct {
-	Dir        string `form:"dir"`
-	ModulePath string `form:"modulePath"`
-}
-
-type GetProjectInfoResp struct {
-	ModuleName   string   `json:"moduleName"`
+type GetPackagesResp struct {
 	PackageList  []string `json:"packageList"`
 	PackageCount uint     `json:"packageCount"`
 }
 
-type GenerateGraphResp struct {
-	PackageCount uint `json:"packageCount"`
+type GetModuleNameResp struct {
+	ModuleName string `json:"moduleName"`
 }
