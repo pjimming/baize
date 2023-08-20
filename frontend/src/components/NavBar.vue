@@ -19,7 +19,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">开发者信息</a></li>
-                        <li><a class="dropdown-item" href="#">开源代码</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">开源代码</a>
+                        </li>
                         <li><a class="dropdown-item" href="#">赞助</a></li>
                     </ul>
                 </li>
