@@ -26,7 +26,7 @@ func NewGetPackagesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetPa
 
 func (l *GetPackagesLogic) GetPackages(req *types.CommonDirReq) (resp *types.GetPackagesResp, err error) {
 
-	packageList, err := helper.GetAllPackages(req.Dir)
+	packageList, err := helper.GetLocalPackages(req.Dir)
 	if err != nil {
 		return nil, err
 	}

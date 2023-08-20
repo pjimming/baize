@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"encoding/json"
 	"fmt"
 	"go/parser"
 	"go/token"
@@ -29,7 +30,7 @@ func GetFileImports(filename string) ([]string, error) {
 	return ret, nil
 }
 
-func GetAllPackages(dir string) ([]string, error) {
+func GetLocalPackages(dir string) ([]string, error) {
 	output, err := exec.Command("go", "list", fmt.Sprintf("%s/...", dir)).CombinedOutput()
 	if err != nil {
 		return nil, err
@@ -37,6 +38,45 @@ func GetAllPackages(dir string) ([]string, error) {
 	}
 
 	return strings.Fields(string(output)), nil
+}
+
+func GetThirdPackages(dir string) ([]string, error) {
+	cmd := exec.Command("go", "list", "-m", "-json", "all")
+	output, err := cmd.Output()
+	if err != nil {
+		return nil, err
+	}
+
+	output = append([]byte("["), output...)
+	output = append(output, []byte("]")...)
+
+	output = []byte(strings.ReplaceAll(string(output), "}\n{", "},\n{"))
+
+	var modules []map[string]interface{}
+	if err = json.Unmarshal(output, &modules); err != nil {
+		return nil, err
+	}
+
+	fmt.Println("Direct Third-party Dependencies:")
+	ret := make([]string, 0)
+	for _, module := range modules {
+		if main, ok := module["Main"].(bool); ok && main {
+			continue
+		}
+
+		if indirect, ok := module["Indirect"].(bool); ok && indirect {
+			continue
+		}
+
+		if depOnly, ok := module["DepOnly"].(bool); ok && depOnly {
+			continue
+		}
+
+		if path, ok := module["Path"].(string); ok {
+			ret = append(ret, path)
+		}
+	}
+	return ret, nil
 }
 
 func GetAllGoFiles(dir string) (goFiles []string, err error) {

@@ -20,12 +20,12 @@ func TestGetFileImports(t *testing.T) {
 	}
 }
 
-func TestGetAllPackages(t *testing.T) {
+func TestGetLocalPackages(t *testing.T) {
 	ast := assert.New(t)
-	packages, err := GetAllPackages(dir)
+	packages, err := GetLocalPackages(dir)
 	ast.Nil(err)
 
-	fmt.Println("GetAllPackages:")
+	fmt.Println("GetLocalPackages:")
 	for _, item := range packages {
 		fmt.Println(item)
 	}
@@ -59,7 +59,7 @@ func TestGetModulePath(t *testing.T) {
 
 func TestShowDependency(t *testing.T) {
 	ast := assert.New(t)
-	//packages, err := GetAllPackages("D:\\GoProject\\baize")
+	//packages, err := GetLocalPackages("D:\\GoProject\\baize")
 	//ast.Nil(err)
 
 	goFiles, err := GetAllGoFiles(dir)
@@ -90,4 +90,14 @@ func TestGetFullPackageName(t *testing.T) {
 		"D:\\GoProject\\baize\\core\\internal\\helper\\helper.go")
 	ast.Nil(err)
 	t.Log("GetFullPackageName:", packageName)
+}
+
+func TestGetThirdPackages(t *testing.T) {
+	ast := assert.New(t)
+	thirdPackages, err := GetThirdPackages(dir)
+	ast.Nil(err)
+	fmt.Println("GetThirdPackages:")
+	for _, item := range thirdPackages {
+		fmt.Println(item)
+	}
 }
