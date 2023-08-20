@@ -2,6 +2,7 @@ package local
 
 import (
 	"context"
+	"github.com/pjimming/baize/core/internal/helper"
 
 	"github.com/pjimming/baize/core/internal/svc"
 	"github.com/pjimming/baize/core/internal/types"
@@ -24,7 +25,12 @@ func NewGetModuleNameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 }
 
 func (l *GetModuleNameLogic) GetModuleName(req *types.CommonModulePathReq) (resp *types.GetModuleNameResp, err error) {
-	// todo: add your logic here and delete this line
+
+	moduleName, err := helper.GetModuleName(req.ModulePath)
+	if err != nil {
+		return nil, err
+	}
+	resp = &types.GetModuleNameResp{ModuleName: moduleName}
 
 	return
 }
