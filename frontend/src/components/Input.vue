@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { fetchModulePath, fetchProjectInfo } from '@/services/api';
+import { fetchModulePath } from '@/services/api';
 import store from '@/store'
 
 export default {
@@ -27,13 +27,7 @@ export default {
             store.commit('setDir', this.inputValue);
             
             try {
-                const modulePath = await fetchModulePath(queryParams);
-                console.log("GetModulePath Response:", modulePath);
-
-                await fetchProjectInfo({
-                    dir: this.inputValue,
-                    modulePath: this.$store.state.modulePath,
-                })
+                fetchModulePath(queryParams);
             } catch (error) {
                 console.error(error.message);
             }

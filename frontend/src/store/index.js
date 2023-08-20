@@ -15,10 +15,17 @@ export default createStore({
   },
   mutations: {
     setModulePath(state, data) {
-      state.modulePath = data;
+      state.projectInfo.modulePath = data.modulePath;
     },
     setDir(state, data) {
       state.dir = data;
+    },
+    setPackages(state, data) {
+      state.projectInfo.packageCount = data.packageCount;
+      state.projectInfo.packageList = data.packageList;
+    },
+    setModuleName(state, data) {
+      state.projectInfo.moduleName = data.moduleName;
     },
     setProjectInfo(state, data) {
       state.projectInfo.modulePath = state.modulePath;

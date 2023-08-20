@@ -5,12 +5,18 @@ const baizeURL = "http://localhost:8888/baize/v1";
 
 export const fetchModulePath = async (queryParams) => {
     try {
-        const response = await axios.get(`${baizeURL}/local/module`, {
+        const response = await axios.get(`${baizeURL}/local/module/path`, {
             params: queryParams,
         });
 
         if (response.status === 200) {
-            store.commit('setModulePath', response.data.modulePath);
+            store.commit('setModulePath', response.data);
+
+            await fetchPackages(queryParams);
+            await fetchModuleName({
+                modulePath: response.data.modulePath,
+            });
+
             return response.data.modulePath;
         } else {
             throw new Error(`Request fail with status: ${response.status}`);
@@ -20,15 +26,14 @@ export const fetchModulePath = async (queryParams) => {
     }
 };
 
-export const fetchProjectInfo = async (queryParams) => {
-    console.log("fetchProjectInfo", queryParams);
+export const fetchPackages = async (queryParams) => {
     try {
-        const response = await axios.get(`${baizeURL}/local/info`, {
+        const response = await axios.get(`${baizeURL}/local/packages`, {
             params: queryParams,
         });
 
         if (response.status === 200) {
-            store.commit('setProjectInfo', response.data);
+            store.commit('setPackages', response.data);
             return response.data;
         } else {
             throw new Error(`Request fail with status: ${response.status}`);
@@ -38,3 +43,19 @@ export const fetchProjectInfo = async (queryParams) => {
     }
 };
 
+export const fetchModuleName = async (queryParams) => {
+    try {
+        const response = await axios.get(`${baizeURL}/local/module/name`, {
+            params: queryParams,
+        });
+
+        if (response.status === 200) {
+            store.commit('setModuleName', response.data);
+            return response.data;
+        } else {
+            throw new Error(`Request fail with status: ${response.status}`);
+        }
+    } catch (error) {
+        throw new Error(`${error.message}`);
+    }
+};
