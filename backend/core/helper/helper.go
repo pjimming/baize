@@ -10,7 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
-	
+
 	"github.com/pjimming/baize/core/internal/types"
 )
 
@@ -121,7 +121,8 @@ func GetFullPackageName(modulePath, filePath string) (string, error) {
 
 	moduleDir := filepath.Dir(modulePath)
 	midPath := strings.TrimPrefix(absFilePath, moduleDir)
-	midPath = strings.TrimPrefix(midPath, "\\")
+	midPath = strings.TrimPrefix(midPath, `\`)
+	midPath = strings.TrimPrefix(midPath, `/`)
 	midPath = filepath.Dir(midPath)
 
 	// Convert file path separators to dots

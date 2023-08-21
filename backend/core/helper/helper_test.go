@@ -88,8 +88,8 @@ func TestGetModuleName(t *testing.T) {
 
 func TestGetFullPackageName(t *testing.T) {
 	ast := assert.New(t)
-	packageName, err := GetFullPackageName("D:\\GoProject\\baize\\go.mod",
-		"D:\\GoProject\\baize\\core\\internal\\helper\\helper.go")
+	packageName, err := GetFullPackageName(`/Users/panjiangming/Project/baize/backend/go.mod`,
+		`/Users/panjiangming/Project/baize/backend/core/helper/helper.go`)
 	ast.Nil(err)
 	t.Log("GetFullPackageName:", packageName)
 }
