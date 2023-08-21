@@ -24,7 +24,7 @@ func TestGetFileImports(t *testing.T) {
 
 func TestGetLocalPackages(t *testing.T) {
 	ast := assert.New(t)
-	packages, err := GetLocalPackages(macOsDir)
+	packages, err := GetLocalPackages(`/Users/panjiangming/Project/rlock`)
 	ast.Nil(err)
 
 	fmt.Println("GetLocalPackages:")
@@ -96,7 +96,7 @@ func TestGetFullPackageName(t *testing.T) {
 
 func TestGetThirdPackages(t *testing.T) {
 	ast := assert.New(t)
-	thirdPackages, err := GetThirdPackages(`/Users/panjiangming/Project/baize/backend`)
+	thirdPackages, err := GetThirdPackages(`/Users/panjiangming/Project/rlock`)
 	ast.Nil(err)
 	fmt.Println("GetThirdPackages:")
 	for _, item := range thirdPackages {

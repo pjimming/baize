@@ -34,7 +34,9 @@ func GetFileImports(filename string) ([]string, error) {
 }
 
 func GetLocalPackages(dir string) ([]string, error) {
-	output, err := exec.Command("go", "list", fmt.Sprintf("%s/...", dir)).CombinedOutput()
+	cmd := exec.Command("go", "list", "./...")
+	cmd.Dir = dir
+	output, err := cmd.Output()
 	if err != nil {
 		return nil, err
 	}
