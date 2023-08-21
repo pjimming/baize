@@ -7,22 +7,35 @@ export default createStore({
     projectInfo: {
       modulePath: "",
       moduleName: "",
-      packageCount: 0,
-      packageList: [],
+      moduleVersion: "",
+      otherPkgList: [],
+      otherPkgCount: 0,
+      projectPkgList: [],
+      projectPkgCount: 0,
+      goFileList: [],
+      goFileCount: 0,
     },
   },
   getters: {
   },
   mutations: {
-    setModulePath(state, data) {
+    setModuleInfo(state, data) {
       state.projectInfo.modulePath = data.modulePath;
+      state.projectInfo.moduleName = data.moduleName;
+      state.projectInfo.moduleVersion = "go " + data.moduleVersion;
     },
     setDir(state, data) {
       state.dir = data;
     },
     setPackages(state, data) {
-      state.projectInfo.packageCount = data.packageCount;
-      state.projectInfo.packageList = data.packageList;
+      state.projectInfo.otherPkgList = data.otherPkgList;
+      state.projectInfo.otherPkgCount = data.otherPkgCount;
+      state.projectInfo.projectPkgList = data.projectPkgList;
+      state.projectInfo.projectPkgCount = data.projectPkgCount;
+    },
+    setGoFiles(state, data) {
+      state.projectInfo.goFileList = data.goFileList;
+      state.projectInfo.goFileCount = data.goFileCount;
     },
     setModuleName(state, data) {
       state.projectInfo.moduleName = data.moduleName;

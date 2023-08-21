@@ -1,18 +1,18 @@
 <template>
-<ContentBase>
-    <h3>golang项目包依赖可视化工具🛠</h3>
-    <hr>
-    <InputVue />
-    <ProjectInfo />
-    <PackageList />
-</ContentBase>
+    <ContentBase>
+        <h3>🛠golang项目包依赖可视化工具😼</h3>
+        <hr>
+        <InputVue />
+        <ProjectInfo />
+        <ListInfo />
+    </ContentBase>
 </template>
 
 <script>
 import ContentBase from '@/components/ContentBase.vue';
 import InputVue from '@/components/Input.vue';
 import ProjectInfo from '@/components/ProjectInfo.vue';
-import PackageList from '@/components/PackageList.vue';
+import ListInfo from '@/components/ListInfo.vue';
 
 export default {
     name: "HomeView",
@@ -20,11 +20,9 @@ export default {
         ContentBase,
         InputVue,
         ProjectInfo,
-        PackageList,
+        ListInfo,
     },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

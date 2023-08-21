@@ -1,13 +1,13 @@
 <template>
-<div class="home">
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <slot></slot>
+    <div class="home">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
     
@@ -20,6 +20,7 @@ export default {
     
 <style scoped>
 .container {
-    margin-top: 20px;
+    margin-top: 80px;
+    margin-bottom: 20px;
 }
 </style>
