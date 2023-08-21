@@ -20,9 +20,6 @@ export default {
     },
     methods: {
         async getModulePath() {
-            store.commit('resetState');
-            console.log(store.state)
-
             const queryParams = {
                 dir: this.inputValue,
             }

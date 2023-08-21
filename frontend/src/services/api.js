@@ -21,12 +21,19 @@ export const fetchModuleInfo = async (queryParams) => {
             throw new Error(`Request fail with status: ${response}`);
         }
     } catch (error) {
-        console.log("errpr:", error);
-        ElMessage({
-            showClose: true,
-            message: `${error.response.data.desc}`,
-            type: 'error',
-        })
+        if (error.code === "ERR_NETWORK") {
+            ElMessage({
+                showClose: true,
+                message: "网络错误",
+                type: 'error',
+            })
+        } else {
+            ElMessage({
+                showClose: true,
+                message: `${error.response.data.desc}`,
+                type: 'error',
+            })
+        }
     }
 };
 
