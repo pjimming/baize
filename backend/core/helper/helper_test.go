@@ -9,6 +9,7 @@ import (
 
 var dir = `D:\GoProject\baize\backend`
 var macOsDir = `/Users/panjiangming/Project/baize/backend`
+var moduleName = `github.com/pjimming/baize`
 
 func TestGetFileImports(t *testing.T) {
 	ast := assert.New(t)
@@ -101,4 +102,11 @@ func TestGetThirdPackages(t *testing.T) {
 	for _, item := range thirdPackages {
 		fmt.Println(item)
 	}
+}
+
+func TestGetModuleVersion(t *testing.T) {
+	ast := assert.New(t)
+	moduleVersion, err := GetModuleVersion(moduleName, macOsDir)
+	ast.Nil(err)
+	t.Log(moduleVersion)
 }

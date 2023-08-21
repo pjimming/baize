@@ -39,9 +39,16 @@ func (l *GetModuleInfoLogic) GetModuleInfo(req *types.CommonDirReq) (resp *types
 		return nil, err
 	}
 
+	moduleVersion, err := helper.GetModuleVersion(moduleName, req.Dir)
+	if err != nil {
+		err = errorx.Error400(err.Error())
+		return nil, err
+	}
+
 	resp = &types.GetModuleInfoResp{
-		ModulePath: modulePath,
-		ModuleName: moduleName,
+		ModulePath:    modulePath,
+		ModuleName:    moduleName,
+		ModuleVersion: moduleVersion,
 	}
 
 	return

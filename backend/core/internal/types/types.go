@@ -10,8 +10,9 @@ type CommonModulePathReq struct {
 }
 
 type GetModuleInfoResp struct {
-	ModulePath string `json:"modulePath"`
-	ModuleName string `json:"moduleName"`
+	ModulePath    string `json:"modulePath"`
+	ModuleName    string `json:"moduleName"`
+	ModuleVersion string `json:"moduleVersion"`
 }
 
 type GetPackagesResp struct {

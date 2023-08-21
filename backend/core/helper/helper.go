@@ -163,3 +163,25 @@ func GetModuleName(goModPath string) (string, error) {
 
 	return modulePath, nil
 }
+
+func GetModuleVersion(moduleName, dir string) (string, error) {
+	cmd := exec.Command("go", "list", "-m", "-json", moduleName)
+	cmd.Dir = dir
+	output, err := cmd.Output()
+	if err != nil {
+		return "", err
+	}
+
+	var module map[string]interface{}
+	if err = json.Unmarshal(output, &module); err != nil {
+		return "", err
+	}
+
+	if main, ok := module["Main"].(bool); ok && main {
+		if goVersion, okk := module["GoVersion"].(string); okk {
+			return goVersion, nil
+		}
+	}
+
+	return "", errors.New(fmt.Sprintf("没有在 %s 找到 %s 的相关信息", dir, moduleName))
+}
