@@ -1,11 +1,11 @@
 syntax = "v1"
 
 info(
-	title: "type title here"
-	desc: "type desc here"
-	author: "type author here"
-	email: "type email here"
-	version: "type version here"
+	title: "basic"
+	desc: "basic apis"
+	author: "panjiangming"
+	email: "panjm2001@126.com"
+	version: "v1"
 )
 
 type (
