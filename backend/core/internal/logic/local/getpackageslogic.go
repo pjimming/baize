@@ -2,6 +2,8 @@ package local
 
 import (
 	"context"
+
+	"github.com/pjimming/baize/common/errorx"
 	"github.com/pjimming/baize/core/helper"
 	"github.com/pjimming/baize/core/internal/svc"
 	"github.com/pjimming/baize/core/internal/types"
@@ -25,13 +27,23 @@ func NewGetPackagesLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetPa
 
 func (l *GetPackagesLogic) GetPackages(req *types.CommonDirReq) (resp *types.GetPackagesResp, err error) {
 
-	packageList, err := helper.GetLocalPackages(req.Dir)
+	projectPkgs, err := helper.GetLocalPackages(req.Dir)
 	if err != nil {
+		err = errorx.Error400(err.Error())
 		return nil, err
 	}
+
+	OtherPkgs, err := helper.GetThirdPackages(req.Dir)
+	if err != nil {
+		err = errorx.Error400(err.Error())
+		return nil, err
+	}
+
 	resp = &types.GetPackagesResp{
-		PackageList:  packageList,
-		PackageCount: uint(len(packageList)),
+		OtherPkgList:    OtherPkgs,
+		OtherPkgCount:   uint(len(OtherPkgs)),
+		ProjectPkgList:  projectPkgs,
+		ProjectPkgCount: uint(len(projectPkgs)),
 	}
 
 	return

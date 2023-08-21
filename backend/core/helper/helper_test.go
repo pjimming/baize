@@ -100,7 +100,7 @@ func TestGetThirdPackages(t *testing.T) {
 	ast.Nil(err)
 	fmt.Println("GetThirdPackages:")
 	for _, item := range thirdPackages {
-		fmt.Println(item)
+		fmt.Println(item.Name, item.Version)
 	}
 }
 

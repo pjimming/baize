@@ -23,9 +23,16 @@ type (
 		ModuleVersion string `json:"moduleVersion"`
 	}
 
+	OtherPkgItem {
+		Name    string `json:"name"`
+		Version string `json:"version"`
+	}
+
 	GetPackagesResp {
-		PackageList  []string `json:"packageList"`
-		PackageCount uint     `json:"packageCount"`
+		OtherPkgList    []*OtherPkgItem `json:"otherPkgList"`
+		OtherPkgCount   uint            `json:"otherPkgCount"`
+		ProjectPkgList  []string        `json:"projectPkgList"`
+		ProjectPkgCount uint            `json:"projectPkgCount"`
 	}
 
 	GoFileItem {

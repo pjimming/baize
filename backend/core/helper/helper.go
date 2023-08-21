@@ -41,7 +41,7 @@ func GetLocalPackages(dir string) ([]string, error) {
 	return strings.Fields(string(output)), nil
 }
 
-func GetThirdPackages(dir string) ([]string, error) {
+func GetThirdPackages(dir string) ([]*types.OtherPkgItem, error) {
 	cmd := exec.Command("go", "list", "-m", "-json", "all")
 	cmd.Dir = dir
 	output, err := cmd.Output()
@@ -58,7 +58,7 @@ func GetThirdPackages(dir string) ([]string, error) {
 		return nil, err
 	}
 
-	ret := make([]string, 0)
+	ret := make([]*types.OtherPkgItem, 0)
 	for _, module := range modules {
 		if main, ok := module["Main"].(bool); ok && main {
 			continue
@@ -72,9 +72,16 @@ func GetThirdPackages(dir string) ([]string, error) {
 			continue
 		}
 
+		otherPkg := &types.OtherPkgItem{}
 		if path, ok := module["Path"].(string); ok {
-			ret = append(ret, path)
+			otherPkg.Name = path
 		}
+
+		if version, ok := module["Version"].(string); ok {
+			otherPkg.Version = version
+		}
+
+		ret = append(ret, otherPkg)
 	}
 	return ret, nil
 }

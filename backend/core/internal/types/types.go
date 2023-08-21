@@ -15,9 +15,16 @@ type GetModuleInfoResp struct {
 	ModuleVersion string `json:"moduleVersion"`
 }
 
+type OtherPkgItem struct {
+	Name    string `json:"name"`
+	Version string `json:"version"`
+}
+
 type GetPackagesResp struct {
-	PackageList  []string `json:"packageList"`
-	PackageCount uint     `json:"packageCount"`
+	OtherPkgList    []*OtherPkgItem `json:"otherPkgList"`
+	OtherPkgCount   uint            `json:"otherPkgCount"`
+	ProjectPkgList  []string        `json:"projectPkgList"`
+	ProjectPkgCount uint            `json:"projectPkgCount"`
 }
 
 type GoFileItem struct {
