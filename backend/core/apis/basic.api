@@ -8,17 +8,11 @@ info(
 	version: "v1"
 )
 
-type (
-	PongResp {
-		Result string `json:"result"`
-	}
-)
-
 @server(
 	group: basic
 )
 service core-api {
 	@doc "ping"
 	@handler Ping
-	get /baize/v1/ping returns (PongResp)
+	get /baize/v1/ping
 }

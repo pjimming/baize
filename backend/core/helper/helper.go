@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/pjimming/baize/core/internal/types"
 	"go/parser"
 	"go/token"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
+	
+	"github.com/pjimming/baize/core/internal/types"
 )
 
 func GetFileImports(filename string) ([]string, error) {

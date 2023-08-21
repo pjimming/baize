@@ -36,7 +36,3 @@ type GetGoFilesResp struct {
 	GoFileList  []*GoFileItem `json:"goFileList"`
 	GoFileCount uint          `json:"goFileCount"`
 }
-
-type PongResp struct {
-	Result string `json:"result"`
-}

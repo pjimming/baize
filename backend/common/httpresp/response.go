@@ -1,8 +1,9 @@
 package httpresp
 
 import (
-	"github.com/pjimming/baize/common/errorx"
 	"net/http"
+
+	"github.com/pjimming/baize/common/errorx"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest/httpx"
