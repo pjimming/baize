@@ -34,7 +34,6 @@ func GetLocalPackages(dir string) ([]string, error) {
 	output, err := exec.Command("go", "list", fmt.Sprintf("%s/...", dir)).CombinedOutput()
 	if err != nil {
 		return nil, err
-		os.Exit(1)
 	}
 
 	return strings.Fields(string(output)), nil
@@ -42,6 +41,7 @@ func GetLocalPackages(dir string) ([]string, error) {
 
 func GetThirdPackages(dir string) ([]string, error) {
 	cmd := exec.Command("go", "list", "-m", "-json", "all")
+	cmd.Dir = dir
 	output, err := cmd.Output()
 	if err != nil {
 		return nil, err
@@ -49,7 +49,6 @@ func GetThirdPackages(dir string) ([]string, error) {
 
 	output = append([]byte("["), output...)
 	output = append(output, []byte("]")...)
-
 	output = []byte(strings.ReplaceAll(string(output), "}\n{", "},\n{"))
 
 	var modules []map[string]interface{}
@@ -57,7 +56,6 @@ func GetThirdPackages(dir string) ([]string, error) {
 		return nil, err
 	}
 
-	fmt.Println("Direct Third-party Dependencies:")
 	ret := make([]string, 0)
 	for _, module := range modules {
 		if main, ok := module["Main"].(bool); ok && main {

@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/zeromicro/go-zero/core/logx"
+	"time"
 
 	"github.com/pjimming/baize/core/internal/config"
 	"github.com/pjimming/baize/core/internal/handler"
@@ -19,6 +21,9 @@ func main() {
 
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
+	logx.MustSetup(c.Log)
+
+	c.Timeout = int64(5 * time.Minute)
 
 	server := rest.MustNewServer(c.RestConf, rest.WithCors())
 	defer server.Stop()

@@ -94,7 +94,7 @@ func TestGetFullPackageName(t *testing.T) {
 
 func TestGetThirdPackages(t *testing.T) {
 	ast := assert.New(t)
-	thirdPackages, err := GetThirdPackages(dir)
+	thirdPackages, err := GetThirdPackages(`/Users/panjiangming/Project/baize/backend`)
 	ast.Nil(err)
 	fmt.Println("GetThirdPackages:")
 	for _, item := range thirdPackages {
