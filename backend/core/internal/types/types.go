@@ -9,8 +9,9 @@ type CommonModulePathReq struct {
 	ModulePath string `form:"modulePath"`
 }
 
-type GetModulePathResp struct {
+type GetModuleInfoResp struct {
 	ModulePath string `json:"modulePath"`
+	ModuleName string `json:"moduleName"`
 }
 
 type GetPackagesResp struct {
@@ -18,6 +19,16 @@ type GetPackagesResp struct {
 	PackageCount uint     `json:"packageCount"`
 }
 
-type GetModuleNameResp struct {
-	ModuleName string `json:"moduleName"`
+type GoFileItem struct {
+	Name string `json:"name"`
+	Size int64  `json:"size"`
+}
+
+type GetGoFilesResp struct {
+	GoFileList  []*GoFileItem `json:"goFileList"`
+	GoFileCount uint          `json:"goFileCount"`
+}
+
+type PongResp struct {
+	Result string `json:"result"`
 }

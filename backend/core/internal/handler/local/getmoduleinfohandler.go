@@ -12,7 +12,7 @@ import (
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func GetPackagesHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func GetModuleInfoHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.CommonDirReq
 		if err := httpx.Parse(r, &req); err != nil {
@@ -20,8 +20,8 @@ func GetPackagesHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := local.NewGetPackagesLogic(r.Context(), svcCtx)
-		resp, err := l.GetPackages(&req)
+		l := local.NewGetModuleInfoLogic(r.Context(), svcCtx)
+		resp, err := l.GetModuleInfo(&req)
 
 		httpresp.HTTP(w, r, resp, err)
 

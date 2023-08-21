@@ -10,4 +10,5 @@ info(
 
 import (
 	"apis/local.api"
+	"apis/basic.api"
 )

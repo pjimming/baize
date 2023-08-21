@@ -17,8 +17,9 @@ type (
 		ModulePath string `form:"modulePath"`
 	}
 
-	GetModulePathResp {
+	GetModuleInfoResp {
 		ModulePath string `json:"modulePath"`
+		ModuleName string `json:"moduleName"`
 	}
 
 	GetPackagesResp {
@@ -26,8 +27,14 @@ type (
 		PackageCount uint     `json:"packageCount"`
 	}
 
-	GetModuleNameResp {
-		ModuleName string `json:"moduleName"`
+	GoFileItem {
+		Name string `json:"name"`
+		Size int64  `json:"size"`
+	}
+
+	GetGoFilesResp {
+		GoFileList  []*GoFileItem `json:"goFileList"`
+		GoFileCount uint          `json:"goFileCount"`
 	}
 )
 
@@ -36,14 +43,14 @@ type (
 )
 service core-api {
 	@doc "获取go.mod路径"
-	@handler GetModulePath
-	get /baize/v1/local/module/path (CommonDirReq) returns (GetModulePathResp)
+	@handler GetModuleInfo
+	get /baize/v1/local/module (CommonDirReq) returns (GetModuleInfoResp)
 	
 	@doc "获取包列表"
 	@handler GetPackages
 	get /baize/v1/local/packages (CommonDirReq) returns (GetPackagesResp)
 	
-	@doc "获取模块名称"
-	@handler GetModuleName
-	get /baize/v1/local/module/name (CommonModulePathReq) returns (GetModuleNameResp)
+	@doc "获取go文件列表"
+	@handler GetGoFiles
+	get /baize/v1/local/file (CommonDirReq) returns (GetGoFilesResp)
 }

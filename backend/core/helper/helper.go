@@ -2,7 +2,9 @@ package helper
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/pjimming/baize/core/internal/types"
 	"go/parser"
 	"go/token"
 	"os"
@@ -77,13 +79,16 @@ func GetThirdPackages(dir string) ([]string, error) {
 	return ret, nil
 }
 
-func GetAllGoFiles(dir string) (goFiles []string, err error) {
+func GetAllGoFiles(dir string) (goFiles []*types.GoFileItem, err error) {
 	err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		if !info.IsDir() && strings.HasSuffix(info.Name(), ".go") {
-			goFiles = append(goFiles, path)
+			goFiles = append(goFiles, &types.GoFileItem{
+				Name: path,
+				Size: info.Size(),
+			})
 		}
 		return nil
 	})
@@ -132,21 +137,17 @@ func GetPackageName(filePath string) (string, error) {
 }
 
 func GetModulePath(dir string) (modulePath string, err error) {
-	err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-		if !info.IsDir() && info.Name() == "go.mod" {
-			modulePath = path
-		}
-		return nil
-	})
-
+	files, err := os.ReadDir(dir)
 	if err != nil {
 		return "", err
 	}
 
-	return modulePath, nil
+	for _, item := range files {
+		if !item.IsDir() && item.Name() == "go.mod" {
+			return dir + "/" + item.Name(), nil
+		}
+	}
+	return "", errors.New(fmt.Sprintf("在 %s 目录下没有找到go.mod文件", dir))
 }
 
 func GetModuleName(goModPath string) (string, error) {

@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	basic "github.com/pjimming/baize/core/internal/handler/basic"
 	local "github.com/pjimming/baize/core/internal/handler/local"
 	"github.com/pjimming/baize/core/internal/svc"
 
@@ -15,8 +16,8 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/baize/v1/local/module/path",
-				Handler: local.GetModulePathHandler(serverCtx),
+				Path:    "/baize/v1/local/module",
+				Handler: local.GetModuleInfoHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
@@ -25,8 +26,18 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/baize/v1/local/module/name",
-				Handler: local.GetModuleNameHandler(serverCtx),
+				Path:    "/baize/v1/local/file",
+				Handler: local.GetGoFilesHandler(serverCtx),
+			},
+		},
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/baize/v1/ping",
+				Handler: basic.PingHandler(serverCtx),
 			},
 		},
 	)

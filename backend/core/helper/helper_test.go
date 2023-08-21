@@ -8,6 +8,7 @@ import (
 )
 
 var dir = `D:\GoProject\baize\backend`
+var macOsDir = `/Users/panjiangming/Project/baize/backend`
 
 func TestGetFileImports(t *testing.T) {
 	ast := assert.New(t)
@@ -22,7 +23,7 @@ func TestGetFileImports(t *testing.T) {
 
 func TestGetLocalPackages(t *testing.T) {
 	ast := assert.New(t)
-	packages, err := GetLocalPackages(dir)
+	packages, err := GetLocalPackages(macOsDir)
 	ast.Nil(err)
 
 	fmt.Println("GetLocalPackages:")
@@ -33,12 +34,12 @@ func TestGetLocalPackages(t *testing.T) {
 
 func TestGetAllGoFiles(t *testing.T) {
 	ast := assert.New(t)
-	goFiles, err := GetAllGoFiles(dir)
+	goFiles, err := GetAllGoFiles(macOsDir)
 	ast.Nil(err)
 
 	fmt.Println("GetAllGoFiles:")
 	for _, item := range goFiles {
-		fmt.Println(item)
+		fmt.Println(item.Name, item.Size)
 	}
 }
 
@@ -52,7 +53,7 @@ func TestGetPackageName(t *testing.T) {
 
 func TestGetModulePath(t *testing.T) {
 	ast := assert.New(t)
-	modulePath, err := GetModulePath(dir)
+	modulePath, err := GetModulePath(macOsDir)
 	ast.Nil(err)
 	t.Log(modulePath)
 }
@@ -66,7 +67,7 @@ func TestShowDependency(t *testing.T) {
 	ast.Nil(err)
 
 	for _, goFile := range goFiles {
-		imports, err := GetFileImports(goFile)
+		imports, err := GetFileImports(goFile.Name)
 		ast.Nil(err)
 
 		fmt.Println(goFile, "GetAllImports")
