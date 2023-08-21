@@ -1,5 +1,6 @@
 import store from "@/store";
 import axios from "axios";
+import { ElMessage } from "element-plus";
 
 const baizeURL = "http://localhost:8888/baize/v1";
 
@@ -8,7 +9,6 @@ export const fetchModuleInfo = async (queryParams) => {
         const response = await axios.get(`${baizeURL}/local/module`, {
             params: queryParams,
         });
-        console.log(response);
         if (response.status === 200) {
 
             store.commit('setModuleInfo', response.data.result);
@@ -22,7 +22,11 @@ export const fetchModuleInfo = async (queryParams) => {
         }
     } catch (error) {
         console.log("errpr:", error);
-        throw new Error(`${error.response.data.desc}`);
+        ElMessage({
+            showClose: true,
+            message: `${error.response.data.desc}`,
+            type: 'error',
+        })
     }
 };
 
@@ -39,7 +43,11 @@ export const fetchPackages = async (queryParams) => {
             throw new Error(`Request fail with status: ${response.status}`);
         }
     } catch (error) {
-        throw new Error(`${error.message}`);
+        ElMessage({
+            showClose: true,
+            message: `${error.response.data.desc}`,
+            type: 'error',
+        })
     }
 };
 
@@ -56,6 +64,10 @@ export const fetchGoFiles = async (queryParams) => {
             throw new Error(`Request fail with status: ${response.status}`);
         }
     } catch (error) {
-        throw new Error(`${error.message}`);
+        ElMessage({
+            showClose: true,
+            message: `${error.response.data.desc}`,
+            type: 'error',
+        })
     }
 }

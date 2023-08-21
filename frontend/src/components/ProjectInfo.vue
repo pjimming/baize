@@ -17,6 +17,7 @@
 
 <script>
 export default {
+    name: 'ProjectInfo',
     data() {
         return {
             size: 'large',

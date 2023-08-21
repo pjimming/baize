@@ -1,24 +1,29 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+
+const initialState = {
+  modulePath: "",
+  dir: "",
+  projectInfo: {
+    modulePath: "",
+    moduleName: "",
+    moduleVersion: "",
+    otherPkgList: [],
+    otherPkgCount: 0,
+    projectPkgList: [],
+    projectPkgCount: 0,
+    goFileList: [],
+    goFileCount: 0,
+  },
+};
 
 export default createStore({
-  state: {
-    modulePath: "",
-    dir: "",
-    projectInfo: {
-      modulePath: "",
-      moduleName: "",
-      moduleVersion: "",
-      otherPkgList: [],
-      otherPkgCount: 0,
-      projectPkgList: [],
-      projectPkgCount: 0,
-      goFileList: [],
-      goFileCount: 0,
-    },
-  },
+  state: { ...initialState },
   getters: {
   },
   mutations: {
+    resetState(state) {
+      Object.assign(state, initialState);
+    },
     setModuleInfo(state, data) {
       state.projectInfo.modulePath = data.modulePath;
       state.projectInfo.moduleName = data.moduleName;
