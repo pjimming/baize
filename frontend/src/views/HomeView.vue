@@ -5,6 +5,7 @@
         <InputVue />
         <ProjectInfo />
         <ListInfo />
+        <Graph />
         <BackToTop />
     </ContentBase>
 </template>
@@ -15,6 +16,7 @@ import InputVue from '@/components/Input.vue';
 import ProjectInfo from '@/components/ProjectInfo.vue';
 import ListInfo from '@/components/ListInfo.vue';
 import BackToTop from '@/components/BackToTop.vue';
+import Graph from '@/components/Graph.vue';
 
 export default {
     name: "HomeView",
@@ -24,6 +26,7 @@ export default {
         ProjectInfo,
         ListInfo,
         BackToTop,
+        Graph,
     },
 }
 </script>

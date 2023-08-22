@@ -14,6 +14,7 @@ const initialState = {
     goFileList: [],
     goFileCount: 0,
   },
+  graph: {},
 };
 
 export default createStore({
@@ -50,7 +51,10 @@ export default createStore({
       state.projectInfo.moduleName = data.moduleName;
       state.projectInfo.packageCount = data.packageCount;
       state.projectInfo.packageList = data.packageList;
-    }
+    },
+    setGraph(state, data) {
+      state.graph = data;
+    },
   },
   actions: {
   },

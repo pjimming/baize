@@ -15,6 +15,7 @@ export const fetchModuleInfo = async (queryParams) => {
 
             await fetchPackages(queryParams);
             await fetchGoFiles(queryParams);
+            await fetchLocalGraph(queryParams);
 
             return response.data.modulePath;
         } else {
@@ -26,13 +27,13 @@ export const fetchModuleInfo = async (queryParams) => {
                 showClose: true,
                 message: "网络错误",
                 type: 'error',
-            })
+            });
         } else {
             ElMessage({
                 showClose: true,
                 message: `${error.response.data.desc}`,
                 type: 'error',
-            })
+            });
         }
     }
 };
@@ -54,7 +55,7 @@ export const fetchPackages = async (queryParams) => {
             showClose: true,
             message: `${error.response.data.desc}`,
             type: 'error',
-        })
+        });
     }
 };
 
@@ -75,6 +76,27 @@ export const fetchGoFiles = async (queryParams) => {
             showClose: true,
             message: `${error.response.data.desc}`,
             type: 'error',
-        })
+        });
     }
-}
+};
+
+export const fetchLocalGraph = async (queryParams) => {
+    try {
+        const response = await axios.get(`${baizeURL}/local/graph`, {
+            params: queryParams,
+        });
+
+        if (response.status === 200) {
+            console.log(response, "local graph");
+            store.commit('setGraph', response.data.result);
+        } else {
+            throw new Error(`Request fail with status: ${response.status}`);
+        }
+    } catch (error) {
+        ElMessage({
+            showClose: true,
+            message: `${error.response.data.desc}`,
+            type: 'error',
+        });
+    }
+};
