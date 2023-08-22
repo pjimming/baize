@@ -29,6 +29,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/baize/v1/local/file",
 				Handler: local.GetGoFilesHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/baize/v1/local/graph",
+				Handler: local.GenerateGraphHandler(serverCtx),
+			},
 		},
 	)
 

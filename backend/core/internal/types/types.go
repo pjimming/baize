@@ -36,3 +36,18 @@ type GetGoFilesResp struct {
 	GoFileList  []*GoFileItem `json:"goFileList"`
 	GoFileCount uint          `json:"goFileCount"`
 }
+
+type GraphNode struct {
+	Id    string `json:"id"`
+	Label string `json:"label"`
+}
+
+type GraphEdge struct {
+	Source string `json:"source"`
+	Target string `json:"target"`
+}
+
+type GenerateGraphResp struct {
+	Nodes []*GraphNode `json:"nodes"`
+	Edges []*GraphEdge `json:"edges"`
+}

@@ -28,7 +28,7 @@ func GetFileImports(filename string) ([]string, error) {
 
 	// Get the imported packages
 	for _, importSpec := range node.Imports {
-		ret = append(ret, importSpec.Path.Value)
+		ret = append(ret, strings.ReplaceAll(importSpec.Path.Value, `"`, ``))
 	}
 	return ret, nil
 }

@@ -44,6 +44,21 @@ type (
 		GoFileList  []*GoFileItem `json:"goFileList"`
 		GoFileCount uint          `json:"goFileCount"`
 	}
+
+	GraphNode {
+		Id    string `json:"id"`
+		Label string `json:"label"`
+	}
+
+	GraphEdge {
+		Source string `json:"source"`
+		Target string `json:"target"`
+	}
+
+	GenerateGraphResp {
+		Nodes []*GraphNode `json:"nodes"`
+		Edges []*GraphEdge `json:"edges"`
+	}
 )
 
 @server(
@@ -61,4 +76,8 @@ service core-api {
 	@doc "获取go文件列表"
 	@handler GetGoFiles
 	get /baize/v1/local/file (CommonDirReq) returns (GetGoFilesResp)
+	
+	@doc "生成有向依赖图"
+	@handler GenerateGraph
+	get /baize/v1/local/graph (CommonDirReq) returns (GenerateGraphResp)
 }

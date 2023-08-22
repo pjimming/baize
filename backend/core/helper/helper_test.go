@@ -13,7 +13,7 @@ var moduleName = `github.com/pjimming/baize`
 
 func TestGetFileImports(t *testing.T) {
 	ast := assert.New(t)
-	imports, err := GetFileImports("D:\\GoProject\\baize\\core\\core.go")
+	imports, err := GetFileImports(`/Users/panjiangming/Project/baize/backend/core/core.go`)
 	ast.Nil(err)
 
 	fmt.Println("GetFileImports:")
