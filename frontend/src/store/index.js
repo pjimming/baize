@@ -14,12 +14,15 @@ const initialState = {
     goFileList: [],
     goFileCount: 0,
   },
-  graph: {},
+  graphData: {},
 };
 
 export default createStore({
   state: { ...initialState },
   getters: {
+    graphData(state) {
+      return state.graphData;
+    }
   },
   mutations: {
     resetState(state) {
@@ -52,8 +55,9 @@ export default createStore({
       state.projectInfo.packageCount = data.packageCount;
       state.projectInfo.packageList = data.packageList;
     },
-    setGraph(state, data) {
-      state.graph = data;
+    setGraphData(state, data) {
+      state.graphData = data;
+      console.log("graph data", state.graphData);
     },
   },
   actions: {

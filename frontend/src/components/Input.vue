@@ -15,8 +15,8 @@ export default {
     name: "InputVue",
     data() {
         return {
-            // inputValue: "D:\\GoProject\\baize\\backend",
-            inputValue: "/Users/panjiangming/Project/baize/backend",
+            inputValue: "D:\\GoProject\\baize\\backend",
+            // inputValue: "/Users/panjiangming/Project/baize/backend",
         };
     },
     methods: {

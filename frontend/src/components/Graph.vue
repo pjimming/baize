@@ -1,19 +1,17 @@
 <template>
-    <div class="container">
-        <h3>包依赖关系图 / Package Dependency Graph</h3>
-        <div id="mountNode"></div>
-    </div>
+<div class="container">
+    <h3>包依赖关系图 / Package Dependency Graph</h3>
+    <div id="mountNode"></div>
+</div>
 </template>
 
 <script>
 import G6 from '@antv/g6';
 import insertCss from 'insert-css';
+import {
+    mapGetters
+} from 'vuex';
 
-// insertCss(`
-//   .g6-component-toolbar li {
-//     list-style-type: none !important;
-//   }
-// `);
 insertCss(`
   .g6-component-tooltip {
     background-color: rgba(255, 255, 255, 0.8);
@@ -22,150 +20,22 @@ insertCss(`
   }
 `);
 
-const data = {
-    "nodes": [
-        {
-            "id": "github.com/pjimming/baize/common/errorx",
-            "label": "github.com/pjimming/baize/common/errorx"
-        },
-        {
-            "id": "github.com/pjimming/baize/common/httpresp",
-            "label": "github.com/pjimming/baize/common/httpresp"
-        },
-        {
-            "id": "github.com/pjimming/baize/core",
-            "label": "github.com/pjimming/baize/core"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/helper",
-            "label": "github.com/pjimming/baize/core/helper"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/config",
-            "label": "github.com/pjimming/baize/core/internal/config"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/handler",
-            "label": "github.com/pjimming/baize/core/internal/handler"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/handler/basic",
-            "label": "github.com/pjimming/baize/core/internal/handler/basic"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/handler/local",
-            "label": "github.com/pjimming/baize/core/internal/handler/local"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/logic/basic",
-            "label": "github.com/pjimming/baize/core/internal/logic/basic"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/logic/local",
-            "label": "github.com/pjimming/baize/core/internal/logic/local"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/svc",
-            "label": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "id": "github.com/pjimming/baize/core/internal/types",
-            "label": "github.com/pjimming/baize/core/internal/types"
-        }
-    ],
-    "edges": [
-        {
-            "source": "github.com/pjimming/baize/core",
-            "target": "github.com/pjimming/baize/core/internal/handler"
-        },
-        {
-            "source": "github.com/pjimming/baize/core",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/local",
-            "target": "github.com/pjimming/baize/common/httpresp"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/logic/local",
-            "target": "github.com/pjimming/baize/common/errorx"
-        },
-        {
-            "source": "github.com/pjimming/baize/common/httpresp",
-            "target": "github.com/pjimming/baize/common/errorx"
-        },
-        {
-            "source": "github.com/pjimming/baize/core",
-            "target": "github.com/pjimming/baize/core/internal/config"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/helper",
-            "target": "github.com/pjimming/baize/core/internal/types"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/basic",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler",
-            "target": "github.com/pjimming/baize/core/internal/handler/basic"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/logic/basic",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/logic/local",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/svc",
-            "target": "github.com/pjimming/baize/core/internal/config"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler",
-            "target": "github.com/pjimming/baize/core/internal/handler/local"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/logic/local",
-            "target": "github.com/pjimming/baize/core/helper"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/logic/local",
-            "target": "github.com/pjimming/baize/core/internal/types"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/local",
-            "target": "github.com/pjimming/baize/common/errorx"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/local",
-            "target": "github.com/pjimming/baize/core/internal/logic/local"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/local",
-            "target": "github.com/pjimming/baize/core/internal/svc"
-        },
-        {
-            "source": "github.com/pjimming/baize/core/internal/handler/local",
-            "target": "github.com/pjimming/baize/core/internal/types"
-        }
-    ]
-}
-
-
 export default {
     name: "LocalGraph",
-
-    mounted() {
-        this.init();
+    computed: {
+        ...mapGetters(['graphData']),
+    },
+    watch: {
+        graphData: {
+            handler(newData) {
+                this.destroyGraph();
+                this.renderGraph(newData);
+            },
+            deep: false,
+        },
     },
     methods: {
-        init() {
+        renderGraph(graphData) {
             const container = document.getElementById('mountNode');
             const width = container.scrollWidth;
             const height = container.scrollHeight || 400;
@@ -193,7 +63,7 @@ export default {
                 },
             });
 
-            const graph = new G6.Graph({
+            this.graph = new G6.Graph({
                 container: 'mountNode', // 指定挂载容器
                 width, // 图的宽度
                 height, // 图的高度
@@ -249,18 +119,21 @@ export default {
                     },
                 },
             });
-            graph.data(data); // 加载数据
-            graph.render(); // 渲染
+            this.graph.data(graphData); // 加载数据
+            this.graph.render(); // 渲染
+        },
+        destroyGraph() {
+            if (this.graph) {
+                this.graph.destroy(); // 销毁图形实例
+                this.graph = null;
+            }
         }
     },
-    computed: {
-        graphData() {
-            return this.$store.state.graph;
-        }
-    },
+    mounted() {
+        // 初始化图形
+        this.renderGraph(this.graphData);
+    }
 }
-
-
 </script>
 
 <style scoped>

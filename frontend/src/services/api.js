@@ -88,7 +88,7 @@ export const fetchLocalGraph = async (queryParams) => {
 
         if (response.status === 200) {
             console.log(response, "local graph");
-            store.commit('setGraph', response.data.result);
+            store.commit('setGraphData', response.data.result);
         } else {
             throw new Error(`Request fail with status: ${response.status}`);
         }
