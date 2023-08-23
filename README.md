@@ -2,11 +2,14 @@
 
 ## 技术栈
 - 后端：
-  - 编程语言：golang
-  - 框架：go-zero
+  - 编程语言：[golang](https://golang.google.cn/)
+  - 框架：[go-zero](https://go-zero.dev/)
 - 前端：
-  - JS框架：vue
-  - UI库：bootstrap5; element-plus
+  - JS框架：[Vue.js](https://cn.vuejs.org/)
+  - UI库：
+    - [bootstrap5](https://getbootstrap.com/)
+    - [element-plus](https://element-plus.gitee.io/zh-CN/)
+  - 图可视化引擎：[AntV G6](https://g6.antv.antgroup.com/)
 - 数据库：不需要
 
 ## 项目架构
@@ -20,7 +23,7 @@
 - [x] GetModuleInfo
 - [x] GetPackages
 - [x] GetGoFiles
-- [ ] GenerateGraph
+- [x] GenerateGraph
   
 ### 前端架构
 #### 组件
@@ -29,8 +32,10 @@
 - [x] Input
 - [x] ListInfo
 - [x] ProjectInfo
-- [ ] Error
-- [ ] Graph
+- [x] Error
+- [x] Graph
+- [x] 404
+- [ ] AboutBaize
 
 #### 视图
 - [ ] 首页
