@@ -1,7 +1,8 @@
 <template>
     <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-default">请输入项目的绝对路径</span>
-        <input type="text" class="form-control" v-model="inputValue">
+        <input type="text" class="form-control" placeholder="例如：/Users/panjiangming/Project/baize/backend"
+            v-model="inputValue">
         <button class="btn btn-primary" @click="getModulePath">Submit</button>
     </div>
 </template>
