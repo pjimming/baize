@@ -1,5 +1,10 @@
 # 白泽 - golang项目包依赖可视化工具😼
 
+## 前言
+白泽可以直观的展示golang项目的包依赖之间的关系，采用了可视化的方式展示依赖关系之间的拓扑图。
+
+[Demo](https://baize.pjmcode.top/#/)
+
 ## 技术栈
 - 后端：
   - 编程语言：[golang](https://golang.google.cn/)
