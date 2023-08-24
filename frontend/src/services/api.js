@@ -2,7 +2,7 @@ import store from "@/store";
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
-const baizeURL = "http://localhost:8888/baize/v1";
+const baizeURL = "http://localhost:5999/baize/v1";
 
 export const fetchModuleInfo = async (queryParams) => {
     try {

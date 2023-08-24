@@ -1,6 +1,6 @@
 Name: core-api
 Host: 0.0.0.0
-Port: 8888
+Port: 5999
 Timeout: 10000
 
 Log:
