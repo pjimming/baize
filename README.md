@@ -44,13 +44,13 @@
 - [x] Error
 - [x] Graph
 - [x] 404
-- [ ] AboutBaize
+- [x] AboutBaize
 
 #### 视图
-- [ ] 首页
-- [ ] 关于白泽
+- [x] 首页
+- [x] 关于白泽
 
 ### 基础工具
 #### Makefile
 - [x] 打包gh-pages
-- [ ] 编译二进制并打包vue静态文件
+- [x] 编译二进制并打包vue静态文件
