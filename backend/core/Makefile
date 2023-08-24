@@ -5,6 +5,7 @@ api:
 	goctl api format --dir ./apis -declare
 
 generate:
-	@rm -f core-yaml.go
+	@rm -f core-yaml.go baize
 	go generate
-	rm -f baize && go build -o baize
+	go build -o baize
+	@mv baize ../../

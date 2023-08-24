@@ -3,7 +3,8 @@
 ## 前言
 白泽可以直观的展示golang项目的包依赖之间的关系，采用了可视化的方式展示依赖关系之间的拓扑图。
 
-[Demo](https://baize.pjmcode.top/#/)
+- [点击跳转至Demo](https://baize.pjmcode.top/#/)
+- [点击下载可执行二进制](https://github.com/pjimming/baize/releases/download/v1.0.0/baize)
 
 ## 技术栈
 - 后端：
@@ -16,6 +17,9 @@
     - [element-plus](https://element-plus.gitee.io/zh-CN/)
   - 图可视化引擎：[AntV G6](https://g6.antv.antgroup.com/)
 - 数据库：不需要
+- 打包工具：
+  - 前端静态文件：[statik](https://github.com/rakyll/statik)
+  - 配置文件：[go-bindata](https://github.com/go-bindata/go-bindata)
 
 ## 项目架构
 ### 后端架构
