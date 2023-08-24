@@ -1,7 +1,7 @@
 <template>
-<ContentBase>
-    <AboutBaize />
-</ContentBase>
+    <ContentBase>
+        <AboutBaize />
+    </ContentBase>
 </template>
 
 <script>
@@ -17,6 +17,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

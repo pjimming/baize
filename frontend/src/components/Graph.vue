@@ -1,24 +1,13 @@
 <template>
-<div class="container">
-    <h3>包依赖关系图 / Package Dependency Graph</h3>
-    <div id="mountNode"></div>
-</div>
+    <div class="container">
+        <h3>包依赖关系图 / Package Dependency Graph</h3>
+        <div id="mountNode"></div>
+    </div>
 </template>
 
 <script>
 import G6 from '@antv/g6';
-import insertCss from 'insert-css';
-import {
-    mapGetters
-} from 'vuex';
-
-insertCss(`
-  .g6-component-tooltip {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 0px 10px 24px 10px;
-    box-shadow: rgb(174, 174, 174) 0px 0px 10px;
-  }
-`);
+import { mapGetters } from 'vuex';
 
 export default {
     name: "LocalGraph",
@@ -40,45 +29,14 @@ export default {
             const width = container.scrollWidth;
             const height = container.scrollHeight || 400;
 
-            const tooltip = new G6.Tooltip({
-                offsetX: 10,
-                offsetY: 0,
-                fixToNode: [1, 0],
-                trigger: 'click',
-
-                itemTypes: ['node'],
-                getContent: (e) => {
-                    const outDiv = document.createElement('div');
-                    outDiv.style.width = 'fit-content';
-                    outDiv.innerHTML = `
-<h4>Custom Content</h4>
-<ul>
-    <li>Type: ${e.item.getType()}</li>
-</ul>
-<ul>
-    <li>Label: ${e.item.getModel().label || e.item.getModel().id}</li>
-</ul>
-`;
-                    return outDiv;
-                },
-            });
-
             this.graph = new G6.Graph({
                 container: 'mountNode', // 指定挂载容器
                 width, // 图的宽度
                 height, // 图的高度
                 fitView: true,
-                plugins: [tooltip],
                 modes: {
                     default: ['zoom-canvas', 'drag-canvas', 'drag-node', 'activate-relations'],
                 },
-                // layout: {
-                //     type: 'grid',
-                //     begin: [20, 20],
-                //     cols: 3,
-                //     width: width - 20,
-                //     height: height - 20,
-                // },
                 layout: {
                     type: 'dagre',
                     rankdir: 'LR',
